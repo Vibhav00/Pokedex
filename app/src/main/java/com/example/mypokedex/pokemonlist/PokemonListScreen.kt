@@ -47,7 +47,7 @@ import com.google.accompanist.imageloading.rememberDrawablePainter
 
 @Composable
 fun PokemonListScreen(
-    navController: NavController? = null,
+    navController: NavController,
     viewModel: PokemonListViewModel = hiltViewModel()
 ) {
     Surface(
@@ -123,7 +123,7 @@ fun SearchBar(
 
 @Composable
 fun PokemonList(
-    navController: NavController?=null,
+    navController: NavController,
     viewModel: PokemonListViewModel = hiltViewModel()
 ) {
     val pokemonList by remember { viewModel.pokemonList }
@@ -168,13 +168,16 @@ fun PokemonList(
 @Composable
 fun PokedexEntry(
     entry: PokedexListEntry,
-    navController: NavController?=null,
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: PokemonListViewModel = hiltViewModel()
 ) {
     val defaultDominantColor = MaterialTheme.colorScheme.surface
     var dominantColor by remember {
         mutableStateOf(defaultDominantColor)
+    }
+    var showProgress by remember {
+        mutableStateOf(true)
     }
 
     Box(
@@ -192,9 +195,9 @@ fun PokedexEntry(
                 )
             )
             .clickable {
-//                navController.navigate(
-//                    "pokemon_detail_screen/${dominantColor.toArgb()}/${entry.pokemonName}"
-//                )
+                navController.navigate(
+                    "pokemon_detail_screen/${dominantColor.toArgb()}/${entry.pokemonName}"
+                )
             }
     ) {
         Column {
@@ -217,6 +220,7 @@ fun PokedexEntry(
                     viewModel.calcDominantColor(it.result.drawable) { color ->
                         dominantColor = color
                     }
+                    showProgress=false
                 },
                 modifier = Modifier
                     .size(120.dp)
@@ -224,12 +228,15 @@ fun PokedexEntry(
             )
 //            https://stackoverflow.com/questions/69818214/how-to-use-imagerequest-builder-target-in-the-new-coil-version-in-jetpack-comp
             Row {
-                CircularProgressIndicator(
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.scale(0.5f),
+                if(showProgress){
+                    CircularProgressIndicator(
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.scale(0.5f),
 
 
-                    )
+                        )
+                }
+
                 Text(
                     text = entry.pokemonName,
                     fontFamily = RobotoCondensed,
@@ -247,7 +254,7 @@ fun PokedexEntry(
 fun PokedexRow(
     rowIndex: Int,
     entries: List<PokedexListEntry>,
-    navController: NavController?=null
+    navController: NavController
 ) {
     Column {
         Row {
