@@ -50,4 +50,8 @@ for Pokémon enthusiasts, providing both beauty and practicality in a single pac
 
 ## video 📺💻
 
+
+https://github.com/Vibhav00/Pokedex/assets/101458238/5e8eecc2-4696-4783-a7a1-ae6c410f1a94
+
+
 ---
