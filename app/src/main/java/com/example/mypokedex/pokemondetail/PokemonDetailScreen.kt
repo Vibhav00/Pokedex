@@ -45,6 +45,7 @@ import com.example.mypokedex.util.parseTypeToColor
 import java.util.*
 import kotlin.math.round
 
+
 @Composable
 fun PokemonDetailScreen(
     dominantColor: Color,

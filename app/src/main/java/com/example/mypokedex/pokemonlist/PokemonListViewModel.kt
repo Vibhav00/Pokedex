@@ -19,6 +19,8 @@ import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
+
+// pagination is business logic
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
     private val repository: PokemonRepository
@@ -101,7 +103,7 @@ class PokemonListViewModel @Inject constructor(
     fun calcDominantColor(drawable: Drawable, onFinish: (Color) -> Unit) {
         val bmp = (drawable as BitmapDrawable).bitmap.copy(Bitmap.Config.ARGB_8888, true)
 
-        onFinish(Color.Green)
+//        onFinish(Color.Green)
         Palette.from(bmp).generate { palette ->
             palette?.dominantSwatch?.rgb?.let { colorValue ->
                 onFinish(Color(colorValue))

@@ -107,7 +107,7 @@ fun SearchBar(
                 .background(Color.White, CircleShape)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
                 .onFocusChanged {
-                    isHintDisplayed = it.isFocused && text.isEmpty()
+                    isHintDisplayed = !it.isFocused && text.isEmpty()
                 }
         )
         if(isHintDisplayed) {
@@ -201,12 +201,12 @@ fun PokedexEntry(
             }
     ) {
         Column {
-            val request = ImageRequest.Builder(LocalContext.current)
-                    .data(entry.imageUrl)
-                    .target {
-
-                    }
-                    .build()
+//            val request = ImageRequest.Builder(LocalContext.current)
+//                    .data(entry.imageUrl)
+//                    .target {
+//
+//                    }
+//                    .build()
 
 
 
@@ -250,6 +250,8 @@ fun PokedexEntry(
     }
 }
 
+
+// check
 @Composable
 fun PokedexRow(
     rowIndex: Int,
