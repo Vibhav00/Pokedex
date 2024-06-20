@@ -48,6 +48,11 @@ for Pokémon enthusiasts, providing both beauty and practicality in a single pac
 
 ---
 
+## Build  📱
+
+Anyone can find the working app inside the <b>Builds<b> folder 
+
+---
 ## video 📺💻
 
 
